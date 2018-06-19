@@ -30,7 +30,7 @@
                 </ul>
             </div>
         </nav>
-        <div class="container">
+        <div id="task" class="container">
             <div class="row">
                 <div class="col-sm">
                     <ul>
@@ -60,12 +60,17 @@
                 </div>
                 <div class="col-sm">
                     <div class="row">
-                        <form class="col s12">
+                        <form class="col s12" v-on:submit.prevent="addTask">
                             <div class="row">
-                                <div class="input-field col s12 blue-text darken-1">
-                                    <i class="material-icons prefix">add</i>
-                                    <input id="icon_prefix" type="text" class="validate">
-                                    <label for="icon_prefix">Add new task</label>
+                                <div class="input-field col s2 blue-text darken-1">
+                                    {#
+                                    <button type="submit" class="waves-effect waves-green btn blue lighten-1">
+                                        <i class="material-icons left">add</i> Add</button> #}
+                                    <input type="submit" value="zapisz">
+                                </div>
+                                <div class="input-field col s10 blue-text darken-1">
+                                    <input id="icon_prefix" type="text" class="validate" v-model="newTask.content">
+                                    <label for="icon_prefix">New task</label>
                                 </div>
                             </div>
                         </form>
@@ -74,10 +79,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
-
 
     <div id="app">
         {{ message }}
@@ -102,7 +104,14 @@
         <input v-model="message"> {{variable}}
     </div>
 
+    
 
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-functions.js"></script>
     <script src="app.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
