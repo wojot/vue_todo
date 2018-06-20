@@ -35,7 +35,6 @@ var app = new Vue({
                 document.getElementById('editInput'+key).disabled = true
                 var newContent = document.getElementById('editInput'+key).value
                 tasksRef.child(key).update({content: newContent})
-                tasksRef.child(key).remove()
                 M.toast({html: 'Changes saved!'})
             } else if(inner == 'Edit') {
                 document.getElementById('edit'+key).innerHTML = 'Save'
