@@ -15,31 +15,36 @@ var app = new Vue({
     data: {
         newTask: {
             content: ''
-        }
+        },
+        currentMessage: null,
+        currentKey: null
     },
     firebase: {
         task: tasksRef
     },
     methods: {
         addTask: function() {
+            if(this.newTask.content == ''){
+                M.toast({html: 'You can not add empty task!'})
+                return
+            }
             tasksRef.push(this.newTask)
+            M.toast({html: 'Added new task \"'+this.newTask.content+'\"'})
             this.newTask.content = ''
         },
         removeTask: function(task) {
             tasksRef.child(task['.key']).remove()
+            M.toast({html: 'Task deleted!'})
         },
-        edit: function(key) {
-            var inner = document.getElementById('edit'+key).innerHTML
-            if(inner == 'Save'){
-                document.getElementById('edit'+key).innerHTML = 'Edit'
-                document.getElementById('editInput'+key).disabled = true
-                var newContent = document.getElementById('editInput'+key).value
-                tasksRef.child(key).update({content: newContent})
-                M.toast({html: 'Changes saved!'})
-            } else if(inner == 'Edit') {
-                document.getElementById('edit'+key).innerHTML = 'Save'
-                document.getElementById('editInput'+key).disabled = false
-            }
+        edit: function(task) {
+            this.currentMessage = task.content
+            this.currentKey = task['.key']
+        },
+        save: function(newMessage, task) {
+            tasksRef.child(task['.key']).update({content: newMessage})
+            this.currentMessage = null
+            this.currentKey = null
+            M.toast({html: 'Changes saved!'})
         }
     }
 })

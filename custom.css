@@ -4,12 +4,12 @@
 
 .input-field label {
     color: white;
-  }
-  /* label focus color */
-  .input-field input[type=text]:focus + label {
-    color: white;
-  }
+}
 
-  .margin-0{
-      margin:0px;
-  }
+.input-field input[type=text]:focus+label {
+    color: white;
+}
+
+.margin-0 {
+    margin: 0px;
+}
